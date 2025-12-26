@@ -1,6 +1,7 @@
-import { fetchProfile,fetchArtists,fetchAlbums } from "./fcns";
+import { fetchProfile,fetchArtists,fetchAlbums,fetchRecents } from "./fcns";
 
 const clientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+console.log(clientId)
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
@@ -16,7 +17,13 @@ if (!code) {
 
 } else {
   const accessToken = await getAccessToken(clientId, code);
-  
+  const tracks= await fetchRecents(accessToken);
+  const groupedartists= tracks.items.map(item => ({
+        album: item.track.album,
+        title: item.track.name,
+        artists: item.track.artists.map(a => a.name)
+    }));
+  displayRecent(groupedartists);
 }
 
 export async function redirectToAuthCodeFlow(clientId) {
@@ -29,7 +36,7 @@ export async function redirectToAuthCodeFlow(clientId) {
     params.append("client_id", clientId);
     params.append("response_type", "code");
     params.append("redirect_uri", "http://127.0.0.1:5173/callback");
-    params.append("scope", "user-read-private user-read-email user-top-read");
+    params.append("scope", "user-read-private user-read-email user-top-read user-read-recently-played");
     params.append("code_challenge_method", "S256");
     params.append("code_challenge", challenge);
     document.location = `https://accounts.spotify.com/authorize?${params.toString()}`;
@@ -76,3 +83,30 @@ export async function getAccessToken(clientId, code) {
 }
 
 
+export function displayRecent(tracks)
+{
+    const table = document.getElementById("table");
+    const tb= document.getElementById("body");
+    const albs = {};
+
+    // for(const song of songs )
+    // {
+
+    // }
+
+    for(const track of tracks)
+    {
+        const id = track.album.id
+
+        albs[id] =
+        {
+            albtitle: track.album.name,
+            title: track.title,
+            artists: track.artists
+        }
+
+    }
+
+    const info = Object.values(albs);
+    console.log(info);
+}

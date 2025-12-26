@@ -25,3 +25,13 @@ export async function fetchAlbums(token)
     return await result.json();
 
 }
+
+export async function fetchRecents(token)
+{
+    const result = await fetch("https://api.spotify.com/v1/me/player/recently-played?limit=50",
+        {
+            method: "GET", headers: { Authorization: `Bearer ${token}`}
+        });
+
+    return await result.json();
+}
