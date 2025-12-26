@@ -89,11 +89,6 @@ export function displayRecent(tracks)
     const tb= document.getElementById("body");
     const albs = {};
 
-    // for(const song of songs )
-    // {
-
-    // }
-
     for(const track of tracks)
     {
         const id = track.album.id
@@ -108,5 +103,21 @@ export function displayRecent(tracks)
     }
 
     const info = Object.values(albs);
-    console.log(info);
+    
+    for(const album of info)
+    {
+        const tr = document.createElement("tr")
+        const tdAlbum = document.createElement("td")
+        tdAlbum.innerText = album.albtitle
+        const tdTitle = document.createElement("td")
+        tdTitle.innerText = album.title
+        const tdArtists = document.createElement("td")
+        tdArtists.innerText = album.artists
+        tr.appendChild(tdTitle);
+        tr.appendChild(tdArtists);
+        tr.appendChild(tdAlbum);
+
+        tb.appendChild(tr)
+        
+    }
 }
