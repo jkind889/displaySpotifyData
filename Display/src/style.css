@@ -1,10 +1,17 @@
-#mainscreenchild h1,p,a
-{
-  /* text-align: center; */
-}
+
 #mainscreenchild
 {
   background-color: green;
   justify-content: center;
   align-items: center;
+}
+
+[data-tab-content]
+{
+  display: none;
+}
+
+.active[data-tab-content]
+{
+  display:block;
 }
