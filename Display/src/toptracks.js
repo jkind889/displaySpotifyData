@@ -18,7 +18,7 @@ if(!token || isTokenExpired())
 async function loadPage(token)
 {
     const longtracks = await fetchhightracks(token,"long_term");
-    const midtracks = await fetchhightracks(token,"mid_term");
+    const midtracks = await fetchhightracks(token,"medium_term");
     const shortracks = await fetchhightracks(token,"short_term");
 
     const groupedshort = groupTracks(shortracks);
