@@ -4,6 +4,13 @@ export function saveToken(token, expiresInSeconds) {
   localStorage.setItem("spotify_expires_at", expiresAt);
 }
 
+export function clearAuth() {
+  localStorage.removeItem("spotify_access_token");
+  localStorage.removeItem("spotify_expires_at");
+  localStorage.removeItem("verifier");
+}
+
+
 export function getStoredToken() {
   return localStorage.getItem("spotify_access_token");
 }
@@ -76,10 +83,6 @@ export async function getAccessToken(clientId, code) {
 
     
 }
-
-
-
-
 
 
 

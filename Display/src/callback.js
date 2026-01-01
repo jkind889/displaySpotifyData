@@ -12,7 +12,7 @@ if (!code) {
   // No code? Send user back to login
   window.location.href = "./index.html";
 }
-
+window.history.replaceState({}, document.title, "/index.html");
 const tokenData = await getAccessToken(clientId, code);
 saveToken(tokenData, 3600)
 

@@ -4,13 +4,17 @@ import {
 
 const token = localStorage.getItem("spotify_access_token")
 console.log(token)
-const tracks = await fetchRecents(token)
-const groupedartists= tracks.items.map(item => ({
+export async function initApp(token)
+{
+    const tracks = await fetchRecents(token)
+    const groupedartists= tracks.items.map(item => ({
         album: item.track.album,
         title: item.track.name,
         artists: item.track.artists.map(a => a.name)
     }));
-displayRecent(groupedartists);
+    displayRecent(groupedartists);
+}
+
 
 export function displayRecent(tracks)
 {
