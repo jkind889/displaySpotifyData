@@ -125,7 +125,7 @@ export async function fetchRecents(token)
 }
 export async function fetchhightracks(token,timeRange)
 {
-    const result = await fetch("/spotify/v1/me/top/tracks?time_range=${timeRange}&limit=50&offset=0",
+    const result = await fetch(`/spotify/v1/me/top/tracks?time_range=${timeRange}&limit=50&offset=0`,
         {
             method: "GET", headers: { Authorization: `Bearer ${token}`}
         });

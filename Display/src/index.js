@@ -35,7 +35,6 @@ export function displayRecent(tracks)
     }
 
     const info = Object.values(albs);
-    
     for(const album of info)
     {
         const tr = document.createElement("tr")
